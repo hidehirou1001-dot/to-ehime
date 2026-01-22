@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Ehime | 気分からはじまる、愛媛の旅案内。</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">To Ehime</div>
+            <div class="header-nav">
+                <button id="pocket-btn" class="nav-link">
+                    Pocket <span id="pocket-count" class="pocket-count" style="display:none;">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                今日は、<br class="sp-only">どこに向かいますか。<br>
+                <span class="hero-title-sub">答えを決めなくていい、旅のはじめ方。</span>
+            </h1>
+            
+            <div class="hero-text-wrapper">
+                <p class="hero-subtitle">
+                    情報はもう十分。必要なのは、きっかけだけ。<br>
+                    To Ehimeは、あなたの「決めきれない」に寄り添います。
+                </p>
+                <p class="hero-description">
+                    今の気分を、ひとこと伝えるだけで、<br class="sp-only">
+                    今のあなたに合った「向かう理由」が見つかります。
+                </p>
+            </div>
+
+            <div class="hero-actions">
+                <a href="#search-section" class="btn-primary" data-target-tab="ai">今の気分から探す</a>
+                <a href="#search-section" class="btn-secondary" data-target-tab="manual">条件から探してみる</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="search-section" class="search-section">
+        <div class="container">
+            
+            <div id="ai-search-area" class="ai-search-area active-tab">
+                <div class="ai-input-group">
+                    <label for="ai-input" class="ai-label">今の気分はいかがですか？</label>
+                    <textarea id="ai-input" placeholder="（例）&#13;&#10;少し疲れているので、静かな海を眺めてぼーっとしたい。&#13;&#10;有名な観光地よりも、古い町並みをゆっくり歩きたい気分。"></textarea>
+                    <button id="ai-search-btn" class="btn-ai">
+                        <span>案内してもらう</span>
+                    </button>
+                </div>
+                
+                <div id="ai-loading" class="ai-loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p class="loading-text">あなたの気分に合う場所を、<br>少し考えています...</p>
+                </div>
+            </div>
+
+            <form id="search-form" class="search-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>エリア</label>
+                        <select name="region" id="region">
+                            <option value="">県内全域</option>
+                            <option value="Toyo">東予 (海と自転車)</option>
+                            <option value="Chuyo">中予 (温泉と文学)</option>
+                            <option value="Nanyo">南予 (歴史と町並み)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>目的</label>
+                        <select name="purpose" id="purpose">
+                            <option value="">指定なし</option>
+                            <option value="relax">リラックス・温泉</option>
+                            <option value="nature">自然・絶景</option>
+                            <option value="food">グルメ</option>
+                            <option value="culture">歴史・文化</option>
+                            <option value="activity">アクティビティ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>予算目安</label>
+                        <select name="budget" id="budget">
+                            <option value="">指定なし</option>
+                            <option value="low">〜3万円</option>
+                            <option value="middle">3〜7万円</option>
+                            <option value="high">7万円〜</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>季節</label>
+                        <select name="season" id="season">
+                            <option value="">指定なし</option>
+                            <option value="spring">春 (3-5月)</option>
+                            <option value="summer">夏 (6-8月)</option>
+                            <option value="autumn">秋 (9-11月)</option>
+                            <option value="winter">冬 (12-2月)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>同行者</label>
+                        <select name="companion" id="companion">
+                            <option value="">指定なし</option>
+                            <option value="solo">ひとり</option>
+                            <option value="couple">カップル・夫婦</option>
+                            <option value="friends">友人</option>
+                            <option value="family">家族</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="search-btn" class="btn-search">この条件で見る</button>
+                    <button type="button" id="reset-btn" class="btn-reset">リセット</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <main class="results-section" style="display: none;">
+        <div class="container">
+            <div id="pocket-view" style="display: none;">
+                <h2 class="pocket-title">あなたのポケット</h2>
+                <p class="pocket-desc">気になった場所を、少しの間あずかっています。</p>
+                <button id="back-to-search" class="btn-text">← 旅を探すに戻る</button>
+            </div>
+
+            <div id="diagnosis-section" class="diagnosis-section">
+                </div>
+
+            <div id="results-message" class="results-message"></div>
+            
+            <div id="spots-grid" class="spots-grid">
+                </div>
+            
+            <div id="no-result" class="no-result" style="display: none;">
+                <p>条件に合う場所が見つかりませんでしたが、<br>あえてこんな場所はいかがでしょうか。</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-concept">
+                <p>To Ehime | 気分からはじまる旅案内</p>
+                <p class="footer-note">Created by a traveler who loves silence. | 開発中（v0.1）</p>
+                <button id="contact-btn" class="btn-text" style="margin-top:1rem; font-size: 0.8rem;">開発者に感想を送る</button>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn">&times;</button>
+            <div id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
