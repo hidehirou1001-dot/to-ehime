@@ -15,7 +15,16 @@
         "access": "松山空港からリムジンバスで40分",
         "bestSeason": "通年楽しめるが、冬の温泉は格別",
         "caution": "整理券が必要な場合があるので事前に確認を。",
-        "imageUrl": "https://placehold.co/800x600/D98E32/FFFFFF?text=Dogo+Onsen"
+        "imageUrl": "https://placehold.co/800x600/D98E32/FFFFFF?text=Dogo+Onsen",
+        "bookingUrl": "https://www.google.com/search?q=道後温泉本館+予約",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=道後温泉本館",
+        "sensory": {
+            "smell": "湯上がりの石鹸と、古い木造建築の香り",
+            "sound": "朝6時に鳴り響く『刻太鼓』の音",
+            "touch": "滑らかな御影石の浴槽の感触"
+        },
+        "curatorVoice": "有名な場所ですが、あえて「朝6時」に行ってください。観光客がまだ寝ている時間の道後は、別世界のように静かです。",
+        "notRecommendedFor": ["効率よく回りたい人", "騒ぎたいグループ"]
     },
     {
         "id": 2,
@@ -33,7 +42,16 @@
         "access": "今治駅からバスまたはタクシー",
         "bestSeason": "気候の良い春と秋",
         "caution": "日焼け対策と水分補給は必須。",
-        "imageUrl": "https://placehold.co/800x600/1E90FF/FFFFFF?text=Shimanami"
+        "imageUrl": "https://placehold.co/800x600/1E90FF/FFFFFF?text=Shimanami",
+        "bookingUrl": "https://www.google.com/search?q=サンライズ糸山+レンタサイクル+予約",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=サンライズ糸山",
+        "sensory": {
+            "smell": "瀬戸内の強い潮風と柑橘の香り",
+            "sound": "自転車のチェーンが回る音と風切り音",
+            "touch": "ハンドルから伝わる橋の振動"
+        },
+        "curatorVoice": "車で渡るのはもったいない。お尻が痛くなっても、自分の足で海を渡る感覚は一生モノです。",
+        "notRecommendedFor": ["日焼けを絶対にしたくない人", "体力を使いたくない人"]
     },
     {
         "id": 3,
@@ -51,7 +69,16 @@
         "access": "松山駅から特急宇和海で約25分",
         "bestSeason": "春の桜、秋の紅葉",
         "caution": "坂道が多いので歩きやすい靴で。",
-        "imageUrl": "https://placehold.co/800x600/8B4513/FFFFFF?text=Uchiko"
+        "imageUrl": "https://placehold.co/800x600/8B4513/FFFFFF?text=Uchiko",
+        "bookingUrl": "https://www.google.com/search?q=内子町+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=内子座",
+        "sensory": {
+            "smell": "和ろうそくの芯が燃える独特の匂い",
+            "sound": "誰もいない木造芝居小屋の静寂",
+            "touch": "手漉き和紙の温かいざらつき"
+        },
+        "curatorVoice": "観光地化されすぎていないのが魅力。夕暮れ時、観光客が帰った後の町並みはタイムスリップしたような錯覚に陥ります。",
+        "notRecommendedFor": ["派手なエンタメを求める人", "歩くのが苦手な人"]
     },
     {
         "id": 4,
@@ -69,7 +96,16 @@
         "access": "松山市内から車で約2時間",
         "bestSeason": "緑が美しい初夏〜秋",
         "caution": "冬期は通行止めになるので注意。",
-        "imageUrl": "https://placehold.co/800x600/3E8E41/FFFFFF?text=Karst"
+        "imageUrl": "https://placehold.co/800x600/3E8E41/FFFFFF?text=Karst",
+        "bookingUrl": "https://www.google.com/search?q=四国カルスト+宿泊",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=四国カルスト+姫鶴平",
+        "sensory": {
+            "smell": "標高1400mの冷たく乾いた空気",
+            "sound": "放牧された牛のカウベルの音",
+            "touch": "ゴツゴツとした石灰岩の冷たさ"
+        },
+        "curatorVoice": "道中は狭く険しいですが、それを乗り越えた先に見える「日本のスイス」は圧巻。雲が自分より下にある感覚を味わってください。",
+        "notRecommendedFor": ["運転に自信がない人（道が狭い）", "冬に行こうとしている人"]
     },
     {
         "id": 5,
@@ -87,7 +123,16 @@
         "access": "松山駅からJR予讃線で約1時間",
         "bestSeason": "夕日が海に沈む晴れた日",
         "caution": "電車の本数が少ないので時刻表を要確認。",
-        "imageUrl": "https://placehold.co/800x600/FF4500/FFFFFF?text=Shimonada"
+        "imageUrl": "https://placehold.co/800x600/FF4500/FFFFFF?text=Shimonada",
+        "bookingUrl": "https://www.google.com/search?q=伊予市+宿泊",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=下灘駅",
+        "sensory": {
+            "smell": "珈琲スタンドから漂う香ばしい匂い",
+            "sound": "波の音と、遠くから聞こえる列車の警笛",
+            "touch": "使い込まれた駅のベンチの木のぬくもり"
+        },
+        "curatorVoice": "写真は有名ですが、本当の良さは「次の電車まで1時間何もない」という強制的な余白です。スマホを置いて海を見てください。",
+        "notRecommendedFor": ["待つことが苦手な人", "コンビニが近くにないと不安な人"]
     },
     {
         "id": 6,
@@ -105,7 +150,16 @@
         "access": "伊予大洲駅から徒歩25分（タクシー推奨）",
         "bestSeason": "新緑と紅葉の季節",
         "caution": "建物保護のため靴下着用を推奨。",
-        "imageUrl": "https://placehold.co/800x600/556B2F/FFFFFF?text=Garyu+Sanso"
+        "imageUrl": "https://placehold.co/800x600/556B2F/FFFFFF?text=Garyu+Sanso",
+        "bookingUrl": "https://www.google.com/search?q=大洲市+NIPPONIA+予約",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=臥龍山荘",
+        "sensory": {
+            "smell": "雨上がりの苔と古い畳の匂い",
+            "sound": "眼下を流れる肱川のせせらぎ",
+            "touch": "丁寧に磨き込まれた廊下の質感"
+        },
+        "curatorVoice": "日本一美しいと言っても過言ではない「捨て柱」があります。建築の細部に宿る狂気的なまでの美意識に触れてください。",
+        "notRecommendedFor": ["建築や庭園に興味がない人", "靴を脱ぐのが面倒な人"]
     },
     {
         "id": 7,
@@ -123,7 +177,16 @@
         "access": "しまなみ海道「大三島IC」から車で15分",
         "bestSeason": "通年（静かな平日がおすすめ）",
         "caution": "境内は広く歩きやすい靴で。",
-        "imageUrl": "https://placehold.co/800x600/2F4F4F/FFFFFF?text=Oyamazumi"
+        "imageUrl": "https://placehold.co/800x600/2F4F4F/FFFFFF?text=Oyamazumi",
+        "bookingUrl": "https://www.google.com/search?q=大三島+宿+予約",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=大山祇神社",
+        "sensory": {
+            "smell": "樹齢2600年の楠が放つ圧倒的な森の香り",
+            "sound": "砂利を踏みしめる音だけが響く静寂",
+            "touch": "御神木の幹の荒々しくも温かい樹皮"
+        },
+        "curatorVoice": "宝物館には日本の国宝・重要文化財の武具の8割があると言われますが、真の宝はこの境内の空気感そのものです。",
+        "notRecommendedFor": ["歴史や神話に関心がない人"]
     },
     {
         "id": 8,
@@ -141,7 +204,16 @@
         "access": "新居浜ICから車で約40分（道が狭いので注意）",
         "bestSeason": "緑が濃い初夏〜秋",
         "caution": "冬期（12月〜2月）は通行止めになる。",
-        "imageUrl": "https://placehold.co/800x600/696969/FFFFFF?text=Tonaru"
+        "imageUrl": "https://placehold.co/800x600/696969/FFFFFF?text=Tonaru",
+        "bookingUrl": "https://www.google.com/search?q=新居浜市+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=東平ゾーン",
+        "sensory": {
+            "smell": "山中の湿った土と、煉瓦の冷たい匂い",
+            "sound": "風が遺跡の間を吹き抜ける音",
+            "touch": "かつて栄えた産業の痕跡である石垣の感触"
+        },
+        "curatorVoice": "かつて数千人が暮らした場所が、今は森に還ろうとしている。その「諸行無常」を肌で感じられる場所です。",
+        "notRecommendedFor": ["山道の運転が苦手な人", "明るく楽しい観光地を求めている人"]
     },
     {
         "id": 9,
@@ -159,7 +231,16 @@
         "access": "しまなみ海道「大島北IC」または「大島南IC」から車で15分",
         "bestSeason": "空気が澄んでいる冬の夕暮れ",
         "caution": "風が強いので上着が必要。",
-        "imageUrl": "https://placehold.co/800x600/4682B4/FFFFFF?text=Kirosan"
+        "imageUrl": "https://placehold.co/800x600/4682B4/FFFFFF?text=Kirosan",
+        "bookingUrl": "https://www.google.com/search?q=今治市+大島+民宿",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=亀老山展望公園",
+        "sensory": {
+            "smell": "海から吹き上げる潮風",
+            "sound": "強風の音と、展望台の砂利を踏む音",
+            "touch": "コンクリート打ちっ放しの冷たい壁"
+        },
+        "curatorVoice": "展望台そのものが「見えない建築」としてデザインされています。景色だけでなく、建築と自然の融合を楽しんでください。",
+        "notRecommendedFor": ["階段の上り下りが辛い人", "高所恐怖症の人"]
     },
     {
         "id": 10,
@@ -177,7 +258,16 @@
         "access": "大街道駅から徒歩5分",
         "bestSeason": "通年（雨の日も雰囲気が良い）",
         "caution": "イベント開催時は混雑することも。",
-        "imageUrl": "https://placehold.co/800x600/800000/FFFFFF?text=Bansuiso"
+        "imageUrl": "https://placehold.co/800x600/800000/FFFFFF?text=Bansuiso",
+        "bookingUrl": "https://www.google.com/search?q=松山市+大街道+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=萬翠荘",
+        "sensory": {
+            "smell": "磨かれた木の床ワックスと、古い紙の匂い",
+            "sound": "階段を登る時の重厚な足音",
+            "touch": "ひんやりとした大理石の手すり"
+        },
+        "curatorVoice": "松山の中心地にありながら、ここだけ時間が止まっています。雨の日こそ、ステンドグラスの光が柔らかく美しいのでおすすめ。",
+        "notRecommendedFor": ["靴を脱いで上がるのが面倒な人"]
     },
     {
         "id": 11,
@@ -195,7 +285,16 @@
         "access": "松山市駅から伊予鉄道高浜線で約15分「三津駅」下車",
         "bestSeason": "気候の良い春と秋",
         "caution": "お店の定休日（火・水など）を確認。",
-        "imageUrl": "https://placehold.co/800x600/A0522D/FFFFFF?text=Mitsuhama"
+        "imageUrl": "https://placehold.co/800x600/A0522D/FFFFFF?text=Mitsuhama",
+        "bookingUrl": "https://www.google.com/search?q=松山市+三津浜+ランチ",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=三津の渡し",
+        "sensory": {
+            "smell": "港町の潮の匂いと、お好み焼き（三津浜焼き）のソースの香り",
+            "sound": "渡し船のエンジンの低い音",
+            "touch": "古民家カフェの使い込まれた木のテーブル"
+        },
+        "curatorVoice": "観光地というよりは「生活の場」。路地裏の猫や、地元の人との何気ない会話を楽しめる人に向いています。",
+        "notRecommendedFor": ["洗練されたリゾートを求める人", "駐車場を探すのが苦手な人"]
     },
     {
         "id": 12,
@@ -213,7 +312,16 @@
         "access": "松山ICから車で約1時間半",
         "bestSeason": "夏（キャニオニングも人気）と紅葉の秋",
         "caution": "足元が滑りやすいのでスニーカー推奨。",
-        "imageUrl": "https://placehold.co/800x600/006400/FFFFFF?text=Nametoko"
+        "imageUrl": "https://placehold.co/800x600/006400/FFFFFF?text=Nametoko",
+        "bookingUrl": "https://www.google.com/search?q=滑床渓谷+水際のロッジ+予約",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=滑床渓谷",
+        "sensory": {
+            "smell": "濃密な森のフィトンチッドと湿った岩の匂い",
+            "sound": "絶え間なく続く清流の水音",
+            "touch": "冷たく透き通った川の水"
+        },
+        "curatorVoice": "ただ歩くだけで、体が浄化されていくのがわかります。携帯の電波も入りにくいですが、それがここの一番の贅沢です。",
+        "notRecommendedFor": ["虫が絶対に無理な人", "デジタルデトックスが不安な人"]
     },
     {
         "id": 13,
@@ -231,7 +339,16 @@
         "access": "松山市内から車で約2時間半",
         "bestSeason": "晴れた日（風が強い日は注意）",
         "caution": "駐車場から灯台までは徒歩20分のアップダウンあり。",
-        "imageUrl": "https://placehold.co/800x600/008080/FFFFFF?text=Sadamisaki"
+        "imageUrl": "https://placehold.co/800x600/008080/FFFFFF?text=Sadamisaki",
+        "bookingUrl": "https://www.google.com/search?q=伊方町+民宿",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=佐田岬灯台",
+        "sensory": {
+            "smell": "強く吹き付ける海風の匂い",
+            "sound": "巨大な風車が回る低い風切り音",
+            "touch": "遮るもののない強風"
+        },
+        "curatorVoice": "日本一細長い半島の先端。ここまで来るのは大変ですが、「最果て」に立った時の達成感は他では味わえません。",
+        "notRecommendedFor": ["長時間の運転が苦手な人", "歩きやすい靴を履いていない人"]
     },
     {
         "id": 14,
@@ -249,7 +366,16 @@
         "access": "松山自動車道「いよ小松IC」から車で約25分＋ロープウェイ",
         "bestSeason": "紅葉の10月上旬〜中旬",
         "caution": "山頂まで行くなら本格的な登山装備が必要。",
-        "imageUrl": "https://placehold.co/800x600/708090/FFFFFF?text=Ishizuchi"
+        "imageUrl": "https://placehold.co/800x600/708090/FFFFFF?text=Ishizuchi",
+        "bookingUrl": "https://www.google.com/search?q=石鎚山+宿泊",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=石鎚神社成就社",
+        "sensory": {
+            "smell": "標高1300mの澄んだ空気と杉の香り",
+            "sound": "法螺貝の音（運が良ければ）と山鳥の声",
+            "touch": "神聖な山の冷気"
+        },
+        "curatorVoice": "山頂まで登らなくても、ロープウェイを降りた成就社だけで十分に「雲の上の世界」を感じられます。心が洗われる場所です。",
+        "notRecommendedFor": ["ロープウェイ代（往復約2000円）を高いと感じる人", "未舗装路を歩きたくない人"]
     },
     {
         "id": 15,
@@ -267,7 +393,16 @@
         "access": "宇和島駅から車で約40分",
         "bestSeason": "ジャガイモの花が咲く4月、収穫の初夏",
         "caution": "畑は私有地なので農作業の邪魔にならないように。",
-        "imageUrl": "https://placehold.co/800x600/9ACD32/FFFFFF?text=Yusu"
+        "imageUrl": "https://placehold.co/800x600/9ACD32/FFFFFF?text=Yusu",
+        "bookingUrl": "https://www.google.com/search?q=宇和島市+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=遊子水荷浦の段畑",
+        "sensory": {
+            "smell": "潮風と畑の土の匂い",
+            "sound": "静かな波音と、農作業をする人の気配",
+            "touch": "積み上げられた石垣のゴツゴツした感触"
+        },
+        "curatorVoice": "ただの畑ではありません。人間が自然と共生してきた証です。下から見上げると、石垣が空まで続いているように見えます。",
+        "notRecommendedFor": ["ただ映える写真が撮れればいい人（マナー厳守です）", "公共交通機関だけで行きたい人"]
     },
     {
         "id": 16,
@@ -285,7 +420,16 @@
         "access": "JR卯之町駅から徒歩",
         "bestSeason": "春の桜シーズン",
         "caution": "静かな住宅街でもあるのでマナーを守って。",
-        "imageUrl": "https://placehold.co/800x600/8B0000/FFFFFF?text=Unomachi"
+        "imageUrl": "https://placehold.co/800x600/8B0000/FFFFFF?text=Unomachi",
+        "bookingUrl": "https://www.google.com/search?q=西予市+卯之町+宿",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=宇和米博物館",
+        "sensory": {
+            "smell": "古い木造校舎の懐かしい匂い",
+            "sound": "長い廊下を雑巾がけする足音",
+            "touch": "使い込まれた木の床の滑らかさ"
+        },
+        "curatorVoice": "109mの廊下での雑巾がけレースが有名ですが、一人で静かに歩くだけでも、小学生の頃に戻ったような感覚になれます。",
+        "notRecommendedFor": ["膝が悪い人（雑巾がけはハードです）", "新しい建物が好きな人"]
     },
     {
         "id": 17,
@@ -303,7 +447,16 @@
         "access": "松山市内から車で約2時間",
         "bestSeason": "紅葉の11月上旬",
         "caution": "道中の山道はカーブが多い。",
-        "imageUrl": "https://placehold.co/800x600/40E0D0/FFFFFF?text=Omogo"
+        "imageUrl": "https://placehold.co/800x600/40E0D0/FFFFFF?text=Omogo",
+        "bookingUrl": "https://www.google.com/search?q=面河渓+国民宿舎+予約",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=面河渓",
+        "sensory": {
+            "smell": "マイナスイオンを感じる冷たい水飛沫",
+            "sound": "激しくも清らかな渓流の音",
+            "touch": "驚くほど冷たい川の水"
+        },
+        "curatorVoice": "水の色が違います。エメラルドグリーンともブルーともつかない「面河ブルー」は、一度見たら忘れられません。",
+        "notRecommendedFor": ["車酔いしやすい人（山道が長いです）", "手軽に行ける場所を探している人"]
     },
     {
         "id": 18,
@@ -321,7 +474,16 @@
         "access": "今治駅からバスで10分",
         "bestSeason": "通年（夜風が心地よい季節）",
         "caution": "天守閣の入場は夕方まで。",
-        "imageUrl": "https://placehold.co/800x600/00008B/FFFFFF?text=Imabari+Castle"
+        "imageUrl": "https://placehold.co/800x600/00008B/FFFFFF?text=Imabari+Castle",
+        "bookingUrl": "https://www.google.com/search?q=今治駅+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=今治城",
+        "sensory": {
+            "smell": "お堀から漂う微かな潮の香り",
+            "sound": "夜の静けさと、時折跳ねる魚の音",
+            "touch": "夜風の涼しさ"
+        },
+        "curatorVoice": "昼も良いですが、夜がおすすめ。ライトアップされた城が水面に映る「逆さ今治城」は、とても幻想的で静かです。",
+        "notRecommendedFor": ["夜道が怖い人", "城の内部展示（歴史資料）に興味がない人"]
     },
     {
         "id": 19,
@@ -339,7 +501,16 @@
         "access": "三島川之江ICから車で約30分",
         "bestSeason": "4月の菜の花、8月の早咲きコスモス",
         "caution": "開花状況を事前にチェック。",
-        "imageUrl": "https://placehold.co/800x600/FF69B4/FFFFFF?text=Suiha"
+        "imageUrl": "https://placehold.co/800x600/FF69B4/FFFFFF?text=Suiha",
+        "bookingUrl": "https://www.google.com/search?q=四国中央市+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=翠波高原",
+        "sensory": {
+            "smell": "一面の花の香りと、高原の草の匂い",
+            "sound": "風に揺れる花々のさざめき",
+            "touch": "柔らかい芝生の感触"
+        },
+        "curatorVoice": "花畑越しに海が見える場所は、全国でも珍しいです。瀬戸内海の青と花の色のコントラストに癒やされてください。",
+        "notRecommendedFor": ["花粉症の人", "虫が苦手な人"]
     },
     {
         "id": 20,
@@ -357,6 +528,15 @@
         "access": "松山市内から車で約3時間",
         "bestSeason": "秋の野路菊シーズン、夕日",
         "caution": "松山からはかなり距離がある。",
-        "imageUrl": "https://placehold.co/800x600/191970/FFFFFF?text=Koumo"
+        "imageUrl": "https://placehold.co/800x600/191970/FFFFFF?text=Koumo",
+        "bookingUrl": "https://www.google.com/search?q=愛南町+ホテル",
+        "mapUrl": "https://www.google.com/maps/search/?api=1&query=高茂岬",
+        "sensory": {
+            "smell": "太平洋の荒々しい潮の香り",
+            "sound": "断崖に打ち付ける波の重低音",
+            "touch": "遮るもののない強風"
+        },
+        "curatorVoice": "ここは愛媛の端っこ。100mの断崖絶壁から海を見下ろすと、悩み事なんてどうでもよくなります。圧倒的な自然の力があります。",
+        "notRecommendedFor": ["高所恐怖症の人", "手軽な観光をしたい人（とにかく遠いです）"]
     }
 ]
