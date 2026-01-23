@@ -24,8 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToSearchBtn = getEl('back-to-search');
     const contactBtn = getEl('contact-btn');
     const heroLinks = document.querySelectorAll('[data-target-tab]');
+    const moodTags = document.querySelectorAll('.mood-tag');
 
-    // --- Data: 状態定義（手紙 & 推薦ロジック） ---
+    // --- Data: 状態定義 ---
     const mindStates = [
         {
             title: "頑張りすぎてしまったあなたへ",
@@ -110,13 +111,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Mood Tag Handling ---
+    if(moodTags) {
+        moodTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                if(aiInput) {
+                    aiInput.value = tag.dataset.text;
+                    // Optional: Smooth scroll to button or highlight
+                    aiSearchBtn.focus();
+                }
+            });
+        });
+    }
+
     // --- AI Search Logic ---
     async function aiSearch() {
         if (allSpots.length === 0) {
-            // リトライ
             await fetchSpots();
             if (allSpots.length === 0) {
-                alert('データを読み込めませんでした。「data」フォルダと「spots.json」を確認してください。');
+                alert('データを読み込めませんでした。「data」フォルダに「spots.json」があるか確認してください。');
                 return;
             }
         }
@@ -134,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if(resultsSection) resultsSection.style.display = 'block'; 
 
-        await new Promise(r => setTimeout(r, 1800));
+        await new Promise(r => setTimeout(r, 1500));
 
         // 1. Determine "State"
         const stateIndex = Math.floor(Math.random() * mindStates.length);
@@ -205,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Manual Search Logic ---
     function manualSearch() {
         if (allSpots.length === 0) {
-            alert('データを読み込めませんでした。');
+            alert('データ読み込み中です。少々お待ちください。');
             return;
         }
         if(diagnosisSection) diagnosisSection.style.display = 'none';
@@ -317,9 +330,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth' });
     }
 
+    // --- Modal Logic ---
     function openModal(spot) {
         const isSaved = savedIds.includes(spot.id);
         const planHtml = spot.plan ? spot.plan.map(p => `<li>${p}</li>`).join('') : '';
+        const sensoryHtml = spot.sensory ? `
+            <div class="sensory-block">
+                <ul class="sensory-list">
+                    <li class="sensory-item"><span class="sensory-icon">👃</span> ${spot.sensory.smell}</li>
+                    <li class="sensory-item"><span class="sensory-icon">👂</span> ${spot.sensory.sound}</li>
+                    <li class="sensory-item"><span class="sensory-icon">✋</span> ${spot.sensory.touch}</li>
+                </ul>
+            </div>
+        ` : '';
+        const voiceHtml = spot.curatorVoice ? `
+            <div class="curator-voice">
+                <p class="curator-text">"${spot.curatorVoice}"</p>
+            </div>
+        ` : '';
+        const notRecommendedHtml = spot.notRecommendedFor ? `
+            <p class="not-recommended">※ ${spot.notRecommendedFor.join('、')}には向きません。</p>
+        ` : '';
+
+        // Fake Stamp Logic
         const fakeCount1 = (spot.id * 3) % 20 + 2; 
         const fakeCount2 = (spot.id * 7) % 15 + 1;
         const fakeCount3 = (spot.id * 5) % 10 + 0;
@@ -333,12 +366,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="modal-details">
                     <span class="modal-pref">${spot.prefecture}</span>
                     <h2 class="modal-title">${spot.title}</h2>
+                    
                     <div class="modal-fav-wrapper">
                         <button class="btn-modal-fav ${isSaved ? 'active' : ''}" id="modal-fav-btn">
                             ${isSaved ? '♥ ポケットに入れています' : '♡ ポケットに入れる'}
                         </button>
                     </div>
+
                     <p class="modal-text">${spot.reason}</p>
+                    
+                    ${voiceHtml}
+                    ${sensoryHtml}
+
                     <div class="stamp-section">
                         <span class="stamp-label">この場所の気配（みんなの感情）</span>
                         <div class="stamp-container">
@@ -353,8 +392,25 @@ document.addEventListener('DOMContentLoaded', () => {
                             </button>
                         </div>
                     </div>
-                    <div class="info-block"><h4>静かな過ごし方（例）</h4><ul>${planHtml}</ul></div>
-                    <div class="modal-meta"><div><strong>時期</strong><br>${spot.bestSeason}</div><div><strong>アクセス</strong><br>${spot.access}</div></div>
+
+                    <div class="info-block">
+                        <h4>静かな過ごし方（例）</h4>
+                        <ul>${planHtml}</ul>
+                    </div>
+                    <div class="modal-meta">
+                        <div><strong>時期</strong><br>${spot.bestSeason}</div>
+                        <div><strong>アクセス</strong><br>${spot.access}</div>
+                    </div>
+                    ${notRecommendedHtml}
+
+                    <div class="modal-actions">
+                        <a href="${spot.bookingUrl}" target="_blank" class="btn-action book">
+                            空室・詳細を見てみる（静寂を予約）
+                        </a>
+                        <a href="${spot.mapUrl}" target="_blank" class="btn-action map">
+                            場所を地図で確認する
+                        </a>
+                    </div>
                 </div>
             `;
             
