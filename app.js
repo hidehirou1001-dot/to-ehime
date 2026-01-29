@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroLinks = document.querySelectorAll('[data-target-tab]');
     const moodTags = document.querySelectorAll('.mood-tag');
 
-    // --- Data: 状態定義 ---
+    // --- Data: 診断結果（手紙の内容） ---
     const mindStates = [
         {
             title: "頑張りすぎてしまったあなたへ",
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchSpots();
     updatePocketCount();
 
-    // --- Switching Search Mode ---
+    // --- Functions: UI Switching ---
     function switchSearchMode(modeName) {
         if(pocketView) pocketView.style.display = 'none';
         if(spotsGrid) spotsGrid.innerHTML = '';
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Hero Links Handling ---
+    // --- Event Listeners ---
     heroLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault(); 
@@ -111,20 +111,76 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Mood Tag Handling ---
     if(moodTags) {
         moodTags.forEach(tag => {
             tag.addEventListener('click', () => {
                 if(aiInput) {
                     aiInput.value = tag.dataset.text;
-                    // Optional: Smooth scroll to button or highlight
                     aiSearchBtn.focus();
                 }
             });
         });
     }
 
-    // --- AI Search Logic ---
+    if(aiSearchBtn) aiSearchBtn.addEventListener('click', aiSearch);
+
+    if(aiInput) {
+        aiInput.addEventListener('keydown', (e) => {
+            if (e.isComposing) return;
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault(); 
+                aiSearchBtn.click();
+            }
+        });
+    }
+
+    if(searchBtn) searchBtn.addEventListener('click', manualSearch);
+    
+    if(resetBtn) {
+        resetBtn.addEventListener('click', () => {
+            if(searchForm) searchForm.reset();
+            if(resultsSection) resultsSection.style.display = 'none';
+            if(spotsGrid) spotsGrid.innerHTML = '';
+            if(resultsMessage) resultsMessage.textContent = '';
+            if(noResult) noResult.style.display = 'none';
+        });
+    }
+
+    if(modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+
+    if(pocketBtn) pocketBtn.addEventListener('click', showPocket);
+    
+    if(backToSearchBtn) {
+        backToSearchBtn.addEventListener('click', () => {
+            switchSearchMode('ai'); 
+            const hero = document.querySelector('.hero');
+            if(hero) hero.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    if(contactBtn) {
+        contactBtn.addEventListener('click', () => {
+            alert('ありがとうございます！\nまだ検証段階なので、SNSのリプライやDMで感想をいただけると泣いて喜びます🍊');
+        });
+    }
+
+    // --- Helper: Get Safe Keyword (Avoid People) ---
+    function getSafeKeyword(spot) {
+        let keys = 'japan,scenery'; 
+        if (spot.purpose) {
+            if (spot.purpose.includes('nature')) keys = 'japan,nature,landscape';
+            else if (spot.purpose.includes('culture')) keys = 'japan,architecture,temple'; 
+            else if (spot.purpose.includes('drive')) keys = 'japan,road,scenery';
+            else if (spot.purpose.includes('relax')) keys = 'japan,garden,quiet';
+            else if (spot.purpose.includes('food')) keys = 'japan,food';
+        }
+        return keys;
+    }
+
+    // --- Logic: AI Search (with Breathing Animation) ---
     async function aiSearch() {
         if (allSpots.length === 0) {
             await fetchSpots();
@@ -137,26 +193,38 @@ document.addEventListener('DOMContentLoaded', () => {
         let text = aiInput ? aiInput.value.trim() : "";
         if (!text) text = "おまかせ";
 
-        if(aiLoading) aiLoading.style.display = 'block';
+        // Reset UI
         if(spotsGrid) spotsGrid.innerHTML = '';
         if(resultsMessage) resultsMessage.innerHTML = '';
         if(diagnosisSection) {
             diagnosisSection.innerHTML = ''; 
             diagnosisSection.style.display = 'none';
         }
-        
         if(resultsSection) resultsSection.style.display = 'block'; 
 
-        await new Promise(r => setTimeout(r, 1500));
+        // ▼▼▼ 呼吸アニメーション開始 ▼▼▼
+        if(aiLoading) {
+            aiLoading.style.display = 'flex';
+            // 最初のメッセージ
+            aiLoading.innerHTML = '<div class="breathing-text">風の音を探しています...</div>';
+            
+            // 2秒後にメッセージを変更
+            setTimeout(() => {
+                if(aiLoading.style.display === 'flex') {
+                    aiLoading.innerHTML = '<div class="breathing-text">あなたへの手紙を書いています...</div>';
+                }
+            }, 2500);
+        }
 
-        // 1. Determine "State"
+        // 待ち時間を少し長くして「間」を作る（合計4.5秒）
+        await new Promise(r => setTimeout(r, 4500));
+        // ▲▲▲ ここまで ▲▲▲
+
         const stateIndex = Math.floor(Math.random() * mindStates.length);
         const currentState = mindStates[stateIndex];
         
-        // 2. Render Diagnosis Card
         renderDiagnosis(currentState);
 
-        // 3. Filter Spots
         const matchedSpots = allSpots.filter(spot => {
             return spot.tags.some(tag => currentState.targetTags.includes(tag)) ||
                    spot.purpose.some(p => currentState.targetTags.includes(p));
@@ -177,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // --- Render Diagnosis Card ---
+    // --- Logic: Render Diagnosis Letter ---
     function renderDiagnosis(state) {
         if(!diagnosisSection) return;
         diagnosisSection.style.display = 'block';
@@ -215,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
-    // --- Manual Search Logic ---
+    // --- Logic: Manual Search ---
     function manualSearch() {
         if (allSpots.length === 0) {
             alert('データ読み込み中です。少々お待ちください。');
@@ -253,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // --- Render Spots ---
+    // --- Logic: Render Cards (Safe Images) ---
     function renderSpots(spots, introText = null) {
         if(!spotsGrid) return;
         spotsGrid.innerHTML = '';
@@ -264,9 +332,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const creditHtml = spot.credit ? `<span class="photo-credit">Photo by ${spot.credit}</span>` : '';
             const introHtml = introText ? `<div class="card-intro"><span>${introText}</span></div>` : '';
 
+            // Safe Auto Image
+            const keyword = getSafeKeyword(spot);
+            const imagePath = `https://loremflickr.com/800/600/${keyword}?lock=${spot.id}`;
+            const dummyImage = `https://placehold.co/800x600/D98E32/FFFFFF?text=Failed+to+load`;
+
             card.innerHTML = `
                 <div class="card-img-wrapper">
-                    <img src="${spot.imageUrl}" alt="${spot.title}" class="card-img" loading="lazy" onerror="this.src='https://placehold.co/600x400?text=No+Image'">
+                    <img src="${imagePath}" 
+                         alt="${spot.title}" 
+                         class="card-img" 
+                         loading="lazy" 
+                         onerror="this.src='${dummyImage}'">
                     ${creditHtml}
                 </div>
                 <button class="btn-fav ${isSaved ? 'active' : ''}">${isSaved ? '♥' : '♡'}</button>
@@ -288,49 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Utilities ---
-    function toggleSave(id, btnElement) {
-        if (savedIds.includes(id)) {
-            savedIds = savedIds.filter(itemId => itemId !== id);
-            if(btnElement) { btnElement.classList.remove('active'); btnElement.textContent = '♡'; }
-        } else {
-            savedIds.push(id);
-            if(btnElement) { btnElement.classList.add('active'); btnElement.textContent = '♥'; }
-        }
-        localStorage.setItem('toEhime_pocket', JSON.stringify(savedIds));
-        updatePocketCount();
-    }
-
-    function updatePocketCount() {
-        if(pocketCount) {
-            if (savedIds.length > 0) {
-                pocketCount.textContent = savedIds.length;
-                pocketCount.style.display = 'inline-block';
-            } else {
-                pocketCount.style.display = 'none';
-            }
-        }
-    }
-
-    function showPocket() {
-        if(aiSearchArea) aiSearchArea.classList.remove('active-tab');
-        if(searchForm) searchForm.classList.remove('active-tab');
-        if(resultsSection) resultsSection.style.display = 'block'; 
-        if(pocketView) pocketView.style.display = 'block';
-        if(diagnosisSection) diagnosisSection.style.display = 'none'; 
-        
-        const pocketSpots = allSpots.filter(spot => savedIds.includes(spot.id));
-        if (pocketSpots.length > 0) {
-            if(resultsMessage) resultsMessage.textContent = '';
-            renderSpots(pocketSpots, "あなたのポケットの中身");
-        } else {
-            if(resultsMessage) resultsMessage.textContent = 'ポケットは空っぽです。';
-            if(spotsGrid) spotsGrid.innerHTML = '';
-        }
-        if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // --- Modal Logic ---
+    // --- Logic: Open Modal (Safe Images & Notes) ---
     function openModal(spot) {
         const isSaved = savedIds.includes(spot.id);
         const planHtml = spot.plan ? spot.plan.map(p => `<li>${p}</li>`).join('') : '';
@@ -352,6 +387,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="not-recommended">※ ${spot.notRecommendedFor.join('、')}には向きません。</p>
         ` : '';
 
+        // Safe Auto Image
+        const keyword = getSafeKeyword(spot);
+        const imagePath = `https://loremflickr.com/800/600/${keyword}?lock=${spot.id}`;
+        const dummyImage = `https://placehold.co/800x600/D98E32/FFFFFF?text=Failed+to+load`;
+
         // Fake Stamp Logic
         const fakeCount1 = (spot.id * 3) % 20 + 2; 
         const fakeCount2 = (spot.id * 7) % 15 + 1;
@@ -362,7 +402,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if(modalBody) {
             modalBody.innerHTML = `
-                <img src="${spot.imageUrl}" alt="${spot.title}" class="modal-img" onerror="this.src='https://placehold.co/600x400?text=No+Image'">
+                <img src="${imagePath}" 
+                     alt="${spot.title}" 
+                     class="modal-img" 
+                     onerror="this.src='${dummyImage}'">
+                
+                <span class="image-note">※ テスト運用中のため、写真はイメージ（関連素材）です</span>
+
                 <div class="modal-details">
                     <span class="modal-pref">${spot.prefecture}</span>
                     <h2 class="modal-title">${spot.title}</h2>
@@ -391,6 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="stamp-icon">✨</span><span class="stamp-name">浄化</span><span class="stamp-count">${fakeCount3 + (hasStampedClean ? 1 : 0)}</span>
                             </button>
                         </div>
+                        <p class="stamp-note">※ 現在はテスト運用中のため、数値はイメージです。</p>
                     </div>
 
                     <div class="info-block">
@@ -440,42 +487,48 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     }
 
-    // --- Listeners ---
-    if(aiSearchBtn) aiSearchBtn.addEventListener('click', aiSearch);
-    if(searchBtn) searchBtn.addEventListener('click', manualSearch);
-    
-    if(resetBtn) {
-        resetBtn.addEventListener('click', () => {
-            if(searchForm) searchForm.reset();
-            if(resultsSection) resultsSection.style.display = 'none';
-            if(spotsGrid) spotsGrid.innerHTML = '';
+    // --- Utilities: Pocket & Fetch ---
+    function toggleSave(id, btnElement) {
+        if (savedIds.includes(id)) {
+            savedIds = savedIds.filter(itemId => itemId !== id);
+            if(btnElement) { btnElement.classList.remove('active'); btnElement.textContent = '♡'; }
+        } else {
+            savedIds.push(id);
+            if(btnElement) { btnElement.classList.add('active'); btnElement.textContent = '♥'; }
+        }
+        localStorage.setItem('toEhime_pocket', JSON.stringify(savedIds));
+        updatePocketCount();
+    }
+
+    function updatePocketCount() {
+        if(pocketCount) {
+            if (savedIds.length > 0) {
+                pocketCount.textContent = savedIds.length;
+                pocketCount.style.display = 'inline-block';
+            } else {
+                pocketCount.style.display = 'none';
+            }
+        }
+    }
+
+    function showPocket() {
+        if(aiSearchArea) aiSearchArea.classList.remove('active-tab');
+        if(searchForm) searchForm.classList.remove('active-tab');
+        if(resultsSection) resultsSection.style.display = 'block'; 
+        if(pocketView) pocketView.style.display = 'block';
+        if(diagnosisSection) diagnosisSection.style.display = 'none'; 
+        
+        const pocketSpots = allSpots.filter(spot => savedIds.includes(spot.id));
+        if (pocketSpots.length > 0) {
             if(resultsMessage) resultsMessage.textContent = '';
-            if(noResult) noResult.style.display = 'none';
-        });
+            renderSpots(pocketSpots, "あなたのポケットの中身");
+        } else {
+            if(resultsMessage) resultsMessage.textContent = 'ポケットは空っぽです。';
+            if(spotsGrid) spotsGrid.innerHTML = '';
+        }
+        if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth' });
     }
 
-    if(modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    if(pocketBtn) pocketBtn.addEventListener('click', showPocket);
-    
-    if(backToSearchBtn) {
-        backToSearchBtn.addEventListener('click', () => {
-            switchSearchMode('ai'); 
-            const hero = document.querySelector('.hero');
-            if(hero) hero.scrollIntoView({ behavior: 'smooth' });
-        });
-    }
-
-    if(contactBtn) {
-        contactBtn.addEventListener('click', () => {
-            alert('ありがとうございます！\nまだ検証段階なので、SNSのリプライやDMで感想をいただけると泣いて喜びます🍊');
-        });
-    }
-
-    // --- Fetch Data ---
     async function fetchSpots() {
         try {
             const response = await fetch('./data/spots.json');
